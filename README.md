@@ -1,6 +1,7 @@
 # ArrayPrinter
 > Print Array values using Node
 
+I just did this out of boredom and wanted to save it for future use, perhaps. If you have a bug or problem, I don't even know if I'll fix it.<br>
 I was bored so.. Yeah. I maded a Node.js module for print arrays........ I.. Well. Good luck bye.
 
 using:
