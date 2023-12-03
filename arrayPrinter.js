@@ -115,8 +115,10 @@ exports.printArray = (
   } else {
     readyToGo = [];
     if (returnStringTranslated == true) {
+      var translated = "";
+      var readyObj = {};
+      var iamon = 0;
       r.forEach((v) => {
-        var isFunc = false;
         try {
           const result = eval(`(${v})`);
           isFunc = result;
@@ -128,6 +130,26 @@ exports.printArray = (
           readyToGo.push(Number(v));
         } else if (isFunc) {
           readyToGo.push(isFunc);
+        } else if (v.startsWith("{")) {
+          translated = v.replace("{ ", "").replace(" }", "");
+          translated = translated.split(" ");
+          next = 0;
+          translated.forEach((v, i) => {
+            function check(v) {
+              var isFunc = false;
+              if (Number(v)) {
+                return Number(v);
+              } else {
+                return v;
+              }
+            }
+
+            if (i == next) {
+              next += 2;
+              readyObj[v.replace(":", "")] = check(translated[i + 1]);
+            }
+          });
+          readyToGo.push(readyObj);
         } else {
           readyToGo.push(v);
         }
